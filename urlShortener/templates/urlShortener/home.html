@@ -1,0 +1,41 @@
+{% extends "urlShortener/mutual/base_extend.html" %}
+<!-- {% include 'mutual/header_include.html' %} -->
+{% block home %}active{% endblock %}
+{% block about %}{% endblock %}
+{% block contact %}{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron">
+
+<form method='post' action="/">{% csrf_token %}
+	<p class="lead">
+		<h3>
+	        <div class="form-group">
+	        	{{ form.as_p}}
+	        </div>
+	    </h3>
+	</p>
+	<button type="submit" class="btn btn-success">Submit</button>
+</form>
+<!-- <p><a class="btn btn-lg btn-success" href="/baziora" role="button">submit</a></p> -->
+{% if errors %}
+{% for error in errors %}
+
+	<br/>
+	<h3>{{ error }}</h3>
+
+
+{% endfor %}
+
+{% else %}
+<br/>
+
+
+{% endif %}
+
+
+</div>
+
+	
+{% endblock %}

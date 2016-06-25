@@ -45,13 +45,19 @@ def index(request):
             context.update({'errors' : e})
 
     context.update({'form' : form})
-    return render(request, 'home.html', context)
+    return render(request, 'urlShortener/home.html', context)
 
 def short(request, shortUrl = None):
     record = user_urls.objects.get(short_url = shortUrl)
     context = {'record' : record}
-    return render(request, 'short.html', context)
+    return render(request, 'urlShortener/short.html', context)
 
 def redirect(request, shortUrl):
     record = user_urls.objects.get(short_url = shortUrl)
     return HttpResponseRedirect(record.user_url)
+
+def about(request):
+    return render(request, 'urlShortener/about.html')
+
+def contact(request):
+    return render(request, 'urlShortener/contact.html')

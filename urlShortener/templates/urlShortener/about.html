@@ -1,0 +1,38 @@
+{% extends "urlShortener/mutual/base_extend.html" %}
+
+{% block home %}{% endblock %}
+{% block about %}active{% endblock %}
+{% block contact %}{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron" >
+          
+
+
+          <h2>URL Shortener</h2>
+         <div style = "text-align: left;">
+          <p >
+          <ol>
+          	<li>
+          		Easy substitute of a long URL up to 600 characters. Submit an URL and recieve an alias which will 
+          	</li>
+          	<li>
+          		redirect you to your URL. For every entry a usert is picked randomly from users available in the database.
+          	</li>
+          	<li>
+          		Using a '!' between the domain and your short URL will direct you the site with the details about the user assigned and direct URL e.g.:
+          		<br/>url with redirection: https://ten-clouds-interview.herokuapp.com/ABCD
+          		<br/>url with direct URL details: https://ten-clouds-interview.herokuapp.com/!ABCD
+          	</li>
+          </ol>
+          </p>
+
+
+		</div>
+</div>
+
+	
+{% endblock %}
+
+
