@@ -13,7 +13,7 @@ class random_users(User):
     # date_joined = models.DateTimeField(auto_now_add = True, auto_now = False)
 
     def __unicode__(self):
-        return self.user_name
+        return self.username
 
 # def get_random_user_pk():
 
