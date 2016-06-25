@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import random_users, user_urls
 
-# Register your models here.
+admin.site.register(random_users)
+admin.site.register(user_urls)
+
+
+
