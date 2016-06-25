@@ -1,21 +1,19 @@
 from __future__ import unicode_literals
-
 from django.db import models
-
-from django.db.models.aggregates import Count
+from django.contrib.auth.models import User
 from random import randint
 
 
-class random_users(models.Model):
-    user_name = models.CharField(max_length = 20)
-    first_name = models.CharField(max_length = 20)
-    last_name = models.CharField(max_length = 20)
-    email = models.EmailField()
-    password = models.CharField(max_length = 20)
-    date_joined = models.DateTimeField(auto_now_add = True, auto_now = False)
+class random_users(User):
+    # user_name = models.CharField(max_length = 20)
+    # first_name = models.CharField(max_length = 20)
+    # last_name = models.CharField(max_length = 20)
+    # email = models.EmailField()
+    # password = models.CharField(max_length = 20)
+    # date_joined = models.DateTimeField(auto_now_add = True, auto_now = False)
 
     def __unicode__(self):
-        return 'randomUser: ' + self.user_name
+        return self.user_name
 
 # def get_random_user_pk():
 
