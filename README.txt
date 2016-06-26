@@ -13,3 +13,6 @@ functionalities:
 - models.random_users is a secondery key in models.user_urls with cascading deletion. Generating new users will purge the old user set and all URL with it.
 - forms are based on models.
 
+Handled exceptions:
+- If there are no fake users in DB.
+- If there are no more unique IDs for the SHORT_URL_MAX_LEN size of the short_url.
