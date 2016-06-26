@@ -12,6 +12,9 @@ body {
   padding-left: 15px;
 }
 
+.custom_margin_buttom{
+  margin-bottom: 35px;
+}
 .custom_left{
   text-align: left;
 }

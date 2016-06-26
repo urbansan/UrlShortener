@@ -11,17 +11,31 @@
 	    </div></p>
 
 {% else %}
-	<label>Your short URL is:</label>
+	<h2 class = "custom_margin_buttom">Your short URL is:</h2>
 	<p class="lead">
 	    <div class="custom_left">
-	    	<br/> User name: {{ record.user.username }}
-	    	<br/> First name: {{ record.user.first_name }}
-	    	<br/> Last name: {{ record.user.last_name }}
-	    	<br/> email: {{ record.user.email }}
-	    	<br/> date joined: {{ record.user.date_joined }}
-			<br/>direct address: <a href="{{ record.user_url }}">{{ record.user_url }}</a>
-			<br/>short address: <a href="/{{ record.short_url }}">https://ten-clouds-interview.herokuapp.com/{{ record.short_url }}</a>
-			<br/>address to this page: <a href="/!{{ record.short_url }}">https://ten-clouds-interview.herokuapp.com/!{{ record.short_url }}</a>
+		    <table>
+
+		    <col width="120">
+			    <tr>
+			    	<td>User name:</td><td>{{ record.user.username }}</td>
+			    </tr>
+			    <tr>
+			    	<td>First name:</td><td>{{ record.user.last_name }}</td>
+			    </tr>
+			    <tr>
+			    	<td>Last name:</td><td>{{ record.user.email }}</td>
+			    </tr>
+			    <tr>
+			    	<td>date joined:</td><td>{{ record.user.date_joined }}</td>
+			    </tr>
+			</table>
+				direct address: <a href="{{ record.user_url }}">
+				 {{  record.user_url|truncatechars:65 }}  </a> 
+				<br/>short address: <a href="/{{ record.short_url }}">
+					{{ host }}/{{ record.short_url }}</a>
+				<br/>address to this page: <a href="/!{{ record.short_url }}">
+					{{ host }}/!{{ record.short_url }}</a>
 	    </div></p>
 {% endif %}
 

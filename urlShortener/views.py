@@ -49,7 +49,7 @@ def index(request):
 
 def short(request, shortUrl = None):
     record = user_urls.objects.get(short_url = shortUrl)
-    context = {'record' : record}
+    context = {'record' : record, 'host' : request.META['HTTP_HOST']}
     return render(request, 'urlShortener/short.html', context)
 
 def redirect(request, shortUrl):

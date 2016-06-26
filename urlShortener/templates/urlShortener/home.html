@@ -7,27 +7,23 @@
 {% block content %}
 
 <div class="jumbotron">
-
+<h2 class="custom_margin_buttom">Submit an URL to shorten it:</h2>
 <form method='post' action="/">{% csrf_token %}
-	<p class="lead">
-		<h3>
-	        <div class="form-group">
-	        	{{ form.as_p}}
-	        </div>
-	    </h3>
+		<p class="lead">
+		        <!-- <div class="form-group"> -->
+		        	{{ form.as_p}}
+		        <!-- </div> -->
+		<br/>
+		<button type="submit" class="btn btn-success" >Submit</button>
 	</p>
-	<br/>
-	<button type="submit" class="btn btn-success" >Submit</button>
 </form>
 <!-- <p><a class="btn btn-lg btn-success" href="/baziora" role="button">submit</a></p> -->
 {% if errors %}
-{% for error in errors %}
+
 
 	<br/>
-	<h3>{{ error }}</h3>
+	<h3>{{ errors|first }}</h3>
 
-
-{% endfor %}
 
 {% else %}
 <br/>

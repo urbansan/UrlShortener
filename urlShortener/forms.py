@@ -12,7 +12,7 @@ class userUrlForm(ModelForm):
             # 'placeholder' : 'Url...'
         }
         labels = {
-            'user_url' : 'Submit an URL to shorten it'
+            'user_url' : ''
 
         }
 
