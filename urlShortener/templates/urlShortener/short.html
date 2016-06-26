@@ -21,20 +21,23 @@
 			    	<td>User name:</td><td>{{ record.user.username }}</td>
 			    </tr>
 			    <tr>
-			    	<td>First name:</td><td>{{ record.user.last_name }}</td>
+			    	<td>First name:</td><td>{{ record.user.first_name }}</td>
 			    </tr>
 			    <tr>
-			    	<td>Last name:</td><td>{{ record.user.email }}</td>
+			    	<td>Last name:</td><td>{{ record.user.last_name }}</td>
 			    </tr>
 			    <tr>
-			    	<td>date joined:</td><td>{{ record.user.date_joined }}</td>
+			    	<td>Email:</td><td>{{ record.user.email }}</td>
+			    </tr>
+			    <tr>
+			    	<td>Date joined:</td><td>{{ record.user.date_joined }}</td>
 			    </tr>
 			</table>
-				direct address: <a href="{{ record.user_url }}">
+				Direct address: <a href="{{ record.user_url }}">
 				 {{  record.user_url|truncatechars:65 }}  </a> 
-				<br/>short address: <a href="/{{ record.short_url }}">
+				<br/>Short address: <a href="/{{ record.short_url }}">
 					{{ host }}/{{ record.short_url }}</a>
-				<br/>address to this page: <a href="/!{{ record.short_url }}">
+				<br/>Address to this page: <a href="/!{{ record.short_url }}">
 					{{ host }}/!{{ record.short_url }}</a>
 	    </div></p>
 {% endif %}
