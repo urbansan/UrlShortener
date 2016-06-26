@@ -9,7 +9,7 @@ from random import randint
 from uuid import uuid4
 import pdb
 
-SHORT_URL_MAX_LEN = 0
+SHORT_URL_MAX_LEN = 10
 
 def getUniqueId(recursion_depth):
 
