@@ -14,10 +14,12 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
-        number_of_users = min(options['number_of_users'][0], 5000)
+        number_of_users = options['number_of_users'][0]
         
         randomusersAPI.purgeUsers()
-        randomusersAPI.UserToDB(number_of_users)
+        real_number_of_users = randomusersAPI.UserToDB(number_of_users)
 
-        string_to_return = 'Added / replaced ' + str(number_of_users) + ' random users'
+        string_to_return = 'Added / replaced ' + str(real_number_of_users) + ' random users'
         self.stdout.write(string_to_return)
+
+    
