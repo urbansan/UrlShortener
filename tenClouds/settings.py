@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'urlShortener',
+    'URLShortener',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -135,9 +135,9 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
-import urlShortener
+import URLShortener
 
-URL_APP =  urlShortener.__path__[0]
+URL_APP =  URLShortener.__path__[0]
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),

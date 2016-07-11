@@ -1,10 +1,10 @@
 from django.forms import ModelForm, TextInput
-from .models import user_urls
-from django.utils.translation import ugettext_lazy as _
+from .models import UserURLS
+# from django.utils.translation import ugettext_lazy as _
 
-class userUrlForm(ModelForm):
+class UserURLForm(ModelForm):
     class Meta:
-        model = user_urls
+        model = UserURLS
         fields = ['user_url']
         widgets = {
             # 'class': 'form-control',
