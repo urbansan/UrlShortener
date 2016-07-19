@@ -6,58 +6,55 @@ from .forms import UserURLForm
 from .models import RandomUsers, UserURLS
 from random import randint
 from uuid import uuid4
+import pdb
 
 SHORT_URL_MAX_LEN = 10
 
 def get_unique_id(recursion_depth):
 
     if recursion_depth > 50:
-        pass
+        return '-1'
 
     shortUrl = str(uuid4()).replace('-', '')[:SHORT_URL_MAX_LEN]
-    try:
-        UserURLS.objects.get(short_url = shortUrl)
+    cursor = UserURLS.objects.filter(short_url = shortUrl)
 
+    if len(cursor):
         recursion_depth += 1
-        get_unique_id(recursion_depth)
+        return get_unique_id(recursion_depth)
  
-    except:
-        return shortUrl
-
-    return '-1'
+    return shortUrl
 
 def index(request):
     context = {}
     form = UserURLForm(request.POST or None)
+    context.update({'form' : form})
 
     if form.is_valid():
-        validate = URLValidator()
-        try:
-            userUrl = form.data['user_url'] 
-            validate(userUrl)
+        # context.update({'form' : form})
+        userUrl = form.data['user_url'] 
 
-            shortUrl = get_unique_id(1)
-            if cmp(shortUrl, '-1') == 0:
-                raise ValidationError('The pool of unique short URLs has been used')
+        shortUrl = get_unique_id(1)
+        if shortUrl == '-1':
+            context.update({'errors' : ['The pool of unique short URLs has been used']})
+            return render(request, 'URLShortener/home.html', context)
 
-            # Check if DB is empty. Throws ValueError on none records in DB.
-            random_user_instance = RandomUsers.objects.all()[randint(0, RandomUsers.objects.count() -1)]
-
-            obtainedRecord, isCreated = UserURLS.objects.get_or_create(
-                user_url = userUrl,
-                defaults={
-                    'user': random_user_instance,
-                    'short_url' : shortUrl
-                 }
-            )
-
-            return HttpResponseRedirect('/!' + obtainedRecord.short_url)
-
-        except ValidationError, e:
-            print e
-            context.update({'errors' : e})
-        except ValueError:
+        all_random_users = RandomUsers.objects.all()
+        if not all_random_users:
             context.update({'errors' : ['Please populate the DB with random users']})
+            return render(request, 'URLShortener/home.html', context)
+
+        random_user_instance = all_random_users[randint(0, len(all_random_users) - 1)]
+        obtained_record, isCreated = UserURLS.objects.get_or_create(
+            user_url = userUrl,
+            defaults={
+                'user': random_user_instance,
+                'short_url' : shortUrl
+             }
+        )
+        return HttpResponseRedirect('/!' + obtained_record.short_url)
+    # else:
+    #     context.update({'errors' : ['Invalid form']})
+    #     return render(request, 'URLShortener/home.html', context)
 
     context.update({'form' : form})
     return render(request, 'URLShortener/home.html', context)

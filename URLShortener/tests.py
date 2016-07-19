@@ -26,12 +26,19 @@ class URLShortenerTestCase(TestCase):
             user_url = 'https://bitly.com/',
             defaults={
                 'user': random_user_instance,
-                'short_url' : 'B'
+                'short_url' : 'A'
              }
         )
 
         #Running assertion
         views.SHORT_URL_MAX_LEN = 1
         views.uuid4 = Mock(return_value = 'A')
-        self.assertEqual(views.get_unique_id(1), 'A')
+        self.assertEqual(views.get_unique_id(1), '-1')
+
+        views.uuid4 = Mock(return_value = 'B')
+        self.assertEqual(views.get_unique_id(1), 'B')
+
+    def test_index(self):
+        
+
 
