@@ -1,8 +1,8 @@
 from django.test import TestCase
 from URLShortener.management.commands import create_fake_users
 from URLShortener import views, models
-# from URLShortener.models import RandomUsers
 from mock import Mock
+from django.test import Client
 
 class URLShortenerTestCase(TestCase):
     def setUp(self):
@@ -14,10 +14,22 @@ class URLShortenerTestCase(TestCase):
             password = 'test_password'
         )
 
+        self.client = Client()
+
     def test_randomuserAPI_checking_correctness_of_external_API(self):
         cmd = create_fake_users.Command()
         users = cmd.get_users(100)
         self.assertEqual(len(users), 100)
+
+    def test_urls(self):
+        resp = self.client.get('/')
+        self.assertEqual(resp.status_code, 200)
+
+        resp = self.client.get('/about')
+        self.assertEqual(resp.status_code, 200)
+
+        resp = self.client.get('/contact')
+        self.assertEqual(resp.status_code, 200)
 
     def test_get_unique_id(self):
         #Creating a URL and short URL for the test user
@@ -39,6 +51,5 @@ class URLShortenerTestCase(TestCase):
         self.assertEqual(views.get_unique_id(1), 'B')
 
     def test_index(self):
+        pass
         
-
-
