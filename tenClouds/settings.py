@@ -30,6 +30,7 @@ if os.path.isfile(os.path.join(PROJECT_ROOT, 'local_settings')):
     print 'running Local settings'
 else:
     DEBUG = False
+    print 'running prod settings'
 
 ALLOWED_HOSTS = []
 

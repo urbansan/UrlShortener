@@ -1,12 +1,11 @@
-from django.core.exceptions import ValidationError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.core.validators import URLValidator
 from .forms import UserURLForm
 from .models import RandomUsers, UserURLS
 from random import randint
 from uuid import uuid4
-import pdb
+#from django.core.validators import URLValidator
+#from django.core.exceptions import ValidationError
 
 SHORT_URL_MAX_LEN = 10
 
